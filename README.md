@@ -8,7 +8,7 @@ Make sure the project in question has a nuget.config in the main solution direct
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
-    <add key="MyGet I8Beef" value="https://www.myget.org/F/i8beef/api/v2" />'
+    <add key="MyGet I8Beef" value="https://www.myget.org/F/i8beef/api/v2" />
   </packageSources> 
 </configuration>
 ```
