@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <PackageVersion>1.0.0</PackageVersion>
+        <PackageId>I8Beef.CodeAnalysis.EditorConfig</PackageId>
+        <PackageProjectUrl>https://github.com/i8beef/I8Beef.CodeAnalysis.EditorConfig</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageTags></PackageTags>
+        <Title>I8Beef.CodeAnalysis.EditorConfig</Title>
+        <Authors>Michael Hallock</Authors>
+        <Description>Code Analysis .editorconfig for I8Beef's project standards</Description>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>content</ContentTargetFolders>
+        <RepositoryUrl>https://github.com/i8beef/I8Beef.CodeAnalysis.EditorConfig.git</RepositoryUrl>
+        <DevelopmentDependency>true</DevelopmentDependency>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <NoDefaultExcludes>true</NoDefaultExcludes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="build/I8Beef.CodeAnalysis.EditorConfig.props" Pack="true" PackagePath="build/" />
+        <None Include="content/.editorconfig" Pack="true" PackagePath="content/" />
+    </ItemGroup>
+
+</Project>
