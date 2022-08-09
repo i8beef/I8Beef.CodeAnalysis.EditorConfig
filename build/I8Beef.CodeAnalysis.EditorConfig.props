@@ -21,10 +21,10 @@
     <EditorConfigFilesToCopy Include="$(MSBuildThisFileDirectory)../content/.editorconfig" />
   </ItemGroup>
   <Target Name="CopyEditorConfig" BeforeTargets="BeforeBuild">
-    <Message Text="Copying the .editorconfig file from '@(EditorConfigFilesToCopy)' to '$(SolutionFolder)'"></Message>
+    <Message Text="Copying the .editorconfig file from '@(EditorConfigFilesToCopy)' to '$(MSBuildProjectDirectory)'"></Message>
     <Copy 
       SourceFiles="@(EditorConfigFilesToCopy)"
-      DestinationFolder="$(SolutionFolder)"
+      DestinationFolder="$(MSBuildProjectDirectory)"
       SkipUnchangedFiles="true"
       UseHardlinksIfPossible="false" />
   </Target>
