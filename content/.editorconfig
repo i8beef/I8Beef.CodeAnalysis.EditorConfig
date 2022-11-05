@@ -417,6 +417,9 @@ dotnet_naming_rule.parameters_rule.severity             = warning
 ##########################################
 # Overrides
 ##########################################
+# Ignore globalization issues
+dotnet_analyzer_diagnostic.category-Globalization.severity = none
+
 [*.{cs,csx,cake,vb,vbx}]
 # "this" qualifiers
 dotnet_style_qualification_for_field = false:warning
@@ -462,6 +465,21 @@ dotnet_diagnostic.IDE0059.severity = none
 # first_underscore_style - The first character must start with an underscore character
 dotnet_naming_style.first_underscore_style.capitalization = camel_case
 dotnet_naming_style.first_underscore_style.required_prefix = _
+
+# Override static rules to make private static readonly _camelCase
+dotnet_naming_symbols.stylecop_static_readonly_fields_group.applicable_accessibilities = public, internal, protected_internal, protected
+dotnet_naming_symbols.stylecop_static_readonly_fields_group.required_modifiers         = static, readonly
+dotnet_naming_symbols.stylecop_static_readonly_fields_group.applicable_kinds           = field
+dotnet_naming_rule.stylecop_static_readonly_fields_must_be_pascal_case_rule.symbols    = stylecop_static_readonly_fields_group
+dotnet_naming_rule.stylecop_static_readonly_fields_must_be_pascal_case_rule.style      = pascal_case_style
+dotnet_naming_rule.stylecop_static_readonly_fields_must_be_pascal_case_rule.severity   = warning
+
+dotnet_naming_symbols.stylecop_private_static_readonly_fields_group.applicable_accessibilities = private_protected, private
+dotnet_naming_symbols.stylecop_private_static_readonly_fields_group.required_modifiers         = static, readonly
+dotnet_naming_symbols.stylecop_private_static_readonly_fields_group.applicable_kinds           = field
+dotnet_naming_rule.stylecop_private_static_readonly_fields_must_be_camel_case_rule.symbols    = stylecop_private_static_readonly_fields_group
+dotnet_naming_rule.stylecop_private_static_readonly_fields_must_be_camel_case_rule.style      = first_underscore_style
+dotnet_naming_rule.stylecop_private_static_readonly_fields_must_be_camel_case_rule.severity   = warning
 
 # Private fields must be _camelCase
 dotnet_naming_rule.stylecop_private_fields_must_be_camel_case_rule.style = first_underscore_style
