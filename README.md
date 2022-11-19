@@ -1,5 +1,5 @@
 # I8Beef.CodeAnalysis.EditorConfig
-Personal Code Analysis editorconfig
+Personal Code Analysis editorconfig for .NET 5 and above
 
 # Usage
 Make sure the project in question has a nuget.config in the main solution directory that matches the following:
@@ -13,7 +13,7 @@ Make sure the project in question has a nuget.config in the main solution direct
 </configuration>
 ```
 
-Install the package I8Beef.CodeAnalysis.EditorConfig to each project in the target solution. The first time it is installed it will copy the editorconfig to the project.
+Install the package I8Beef.CodeAnalysis.EditorConfig to each project in the target solution. The first time it is installed it will copy the editorconfig to the project. You should not update this file directly as package reinstalls will overwrite it.
 
 # Explanation
 The `I8Beef.CodeAnalysis.EditorConfig.props` file will set various settings in the project file automatically. These include:
