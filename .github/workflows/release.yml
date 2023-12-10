@@ -5,7 +5,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
-  DOTNETVERSION: "5.0.x"
+  DOTNETVERSION: "8.0.x"
   APP: "I8Beef.CodeAnalysis.EditorConfig"
   CSPROJ: "I8Beef.CodeAnalysis.EditorConfig.csproj"
   PACKOUTPUTPATH: "./out"
@@ -15,36 +15,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: master
           fetch-depth: 0
 
       - name: Setup .NET Core SDK ${{ env.DOTNETVERSION }}
-        uses: actions/setup-dotnet@v1.7.2
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNETVERSION }}
 
       - name: Get version
         id: version
-        uses: battila7/get-version-action@v2
+        run: echo "version-without-v=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
       - name: Get previous release tag
         id: previousTag
-        uses: sammcoe/get-previous-release-action@v1.0.3
-
-      - name: Build changelog
-        id: gitLog
-        uses: jarrodparkes/git-log-action@1.0.0
-        with:
-          start: ${{ steps.previousTag.outputs.tag }}
-          end: ${{ github.ref }}
+        run: |
+          PREV_REV=$(git rev-list --tags --max-count=1 --skip=1 --no-walk)
+          PREV_TAG=$(git describe --tags ${PREV_REV})
+          echo "tag=${PREV_TAG}" >> $GITHUB_OUTPUT
 
       - name: Build
         run: dotnet pack ${{ env.CSPROJ }} -p:PackageVersion=${{ steps.version.outputs.version-without-v }} -o ${{ env.PACKOUTPUTPATH }}
 
       - name: Upload NuGet build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.APP }} NuGet Packages
           path: ${{ env.PACKOUTPUTPATH }}
